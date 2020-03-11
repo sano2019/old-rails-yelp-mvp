@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  # get 'tasks', to: 'tasks#index', as: :tasks
-  # get 'tasks/new', to: 'tasks#new', as: :new_task
-  # get 'tasks/:id', to: 'tasks#show', as: :task
-  # post 'tasks', to: 'tasks#create'
-  # get 'tasks/:id/edit', to: 'tasks#edit', as: :edit_task
-  # patch 'tasks/:id', to: 'tasks#update'
-  # delete 'tasks/:id', to: 'tasks#destroy'
-  get 'restaurants', to: 'restaurants#index'
-  get 'restaurants/new', to: 'restaurants#new', as: :new_restaurant
-  get 'restaurant/:id', to: 'restaurants#show', as: :restaurant
+
+  resources :restaurants, except: [:update, :destroy] do
+    resources :reviews
+  end
+  # get 'restaurants', to: 'restaurants#index'
+  # get 'restaurants/new', to: 'restaurants#new', as: :new_restaurant
+  # get 'restaurants/:id', to: 'restaurants#show', as: :restaurant
+  # post 'restaurants', to: 'restaurants#create'
+  #   get 'restaurants/:restaurant_id/reviews/new', to: 'reviews#new', as: :new_restaurant_review
+  #   post 'restaurants/:restaurant_id/reviews', to: 'reviews#create'
 end
